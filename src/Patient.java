@@ -1,5 +1,5 @@
 
-public class Patient {
+public class Patient  {
  private int id;
  private String name;
  private int severity;
@@ -24,5 +24,7 @@ public class Patient {
  public String toString() {
 	 return "[Priority " + severity+ "] ID: "+ id+" - Name: "+ name; 
  }
+ 
+ 
  
 }

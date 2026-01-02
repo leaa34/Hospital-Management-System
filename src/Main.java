@@ -1,14 +1,14 @@
 import java.util.Scanner;
-import java.util.ArrayList;
+import java.util.PriorityQueue;
 
 public class Main {
  public static void main(String[] args) {
 	Scanner scan = new Scanner(System.in);
 	boolean running = true;
-	ArrayList<Patient> patientList = new ArrayList<>();
+	PriorityQueue<Patient> patientQueue = new PriorityQueue<>(new MyComp());
 	
 	while(running) {
-		System.out.println("   Hospital Management System    ");
+		System.out.println("   --Hospital Management System--    ");
 		System.out.println("1- Add Patient ");
 		System.out.println("2- View all Patients ");
 		System.out.println("3- Exit ");
@@ -28,17 +28,19 @@ public class Main {
 	    	int sev = scan.nextInt();
 	    	
 	    	Patient newPatient = new Patient(id, name, sev);
-	    	patientList.add(newPatient);
+	    	patientQueue.add(newPatient);
 	    	System.out.println("Successfully added: "+ newPatient.toString());
 	    }
 	    else if(choice==2) {
-	    	System.out.println("   Current Patient List:    ");
-	    	if(patientList.isEmpty()) {
+	    	System.out.println("   --Current Patient List:--    ");
+	    	if(patientQueue.isEmpty()) {
 	    		System.out.println("No Patients available.");
 	    	}
 	    	else {
-	    		for(Patient p: patientList) {
-	    			System.out.println(p.toString());
+	    		PriorityQueue<Patient>temp = new PriorityQueue<>(patientQueue);
+	    		while(!temp.isEmpty()) {
+	    			System.out.println(temp.poll());
+	    			
 	    		}
 	    	}
 	    }
