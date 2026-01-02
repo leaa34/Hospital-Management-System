@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.util.PriorityQueue;
+import java.util.InputMismatchException;
 
 public class Main {
  public static void main(String[] args) {
@@ -8,6 +9,7 @@ public class Main {
 	PriorityQueue<Patient> patientQueue = new PriorityQueue<>(new MyComp());
 	
 	while(running) {
+		try {
 		System.out.println("   --Hospital Management System--    ");
 		System.out.println("1- Add Patient ");
 		System.out.println("2- View all Patients ");
@@ -17,6 +19,7 @@ public class Main {
 	    scan.nextLine(); // to be able to read next if String. do this only if we have int/double and next string.
 	    
 	    if(choice==1) {
+	    	
 	    	System.out.println("Enter Patient ID: ");
 	    	int id = scan.nextInt();
 	    	scan.nextLine();
@@ -31,6 +34,8 @@ public class Main {
 	    	patientQueue.add(newPatient);
 	    	System.out.println("Successfully added: "+ newPatient.toString());
 	    }
+	    	
+	    
 	    else if(choice==2) {
 	    	System.out.println("   --Current Patient List:--    ");
 	    	if(patientQueue.isEmpty()) {
@@ -53,8 +58,15 @@ public class Main {
 	    }
 		
 	}
-	 scan.close();
+		catch(InputMismatchException e) {
+			System.out.println("ERROR: Please enter numbers only.");
+			scan.nextLine();
+		}
+	 
 
 	}
 
+ 
+ scan.close(); 
+}
 }
